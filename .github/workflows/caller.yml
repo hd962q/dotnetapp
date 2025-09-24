@@ -39,5 +39,5 @@ jobs:
       app-name: appsvc1 
       deployment-slot: development
       secrets: 
-      azure: ${{ secrets.azure }}
+      azure: ${{ secrets.AZURE }}
   
