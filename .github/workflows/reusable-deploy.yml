@@ -7,11 +7,11 @@ on:
     required: true
     type: string
    app-name:
-   required: true
-   type: string
+    required: true
+    type: string
    deployment-slot: 
-   required: true
-   type: string
+    required: true
+    type: string
   secrets: 
    azure:
     required: false
@@ -19,10 +19,7 @@ on:
 jobs:
  deploy_job:
     runs-on: windows-latest
-    env:
-      package-name: .net-app
-      app-name: azureapp1
-      deployment-slot: production
+ 
       
     steps:
       
