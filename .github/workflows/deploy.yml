@@ -1,4 +1,4 @@
-name: resuable workflow to deploy
+name: reusable workflow to deploy
 
 on: 
  workflow_call:
@@ -19,7 +19,6 @@ on:
 jobs:
  deploy_job:
     runs-on: windows-latest
-    needs: build-job
     env:
       package-name: .net-app
       app-name: azureapp1
