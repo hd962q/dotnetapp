@@ -30,7 +30,7 @@ jobs:
           # Artifact name
           name: .net-app
           path: ${{env.DOTNET_ROOT}}\myapp
-  call-reusable-deployment:
+  call-reusable-deployment-workflow-job:
    needs: build-job
 
    uses: ./.github/workflows/reusable-deploy.yml
@@ -39,5 +39,5 @@ jobs:
       app-name: appsvc1 
       deployment-slot: development
       secrets: 
-      azure-profile: ${{ secrets.AZURE }}
+      azure: ${{ secrets.AZURE }}
   
