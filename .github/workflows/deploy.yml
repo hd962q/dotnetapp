@@ -1,0 +1,44 @@
+name: resuable workflow to deploy
+
+on: 
+ workflow_call:
+  inputs: 
+   package-name: 
+    required: true
+    type: string
+   app-name:
+   required: true
+   type: string
+   deployment-slot: 
+   required: true
+   type: string
+  secrets: 
+   azure:
+    required: false
+  
+jobs:
+ deploy_job:
+    runs-on: windows-latest
+    needs: build-job
+    env:
+      package-name: .net-app
+      app-name: azureapp1
+      deployment-slot: production
+      
+    steps:
+      
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: ${{ inputs.package-name }}
+
+      - name: Secret Information
+        run: echo "Value of secret matches - ${{ secrets.azure  == 'Placeholder' }}"
+
+      - name: Print name of App Service to deploy to
+        run: echo "App will be deployed to ${{ inputs.app-name }}"
+      
+      - name: List files in root directory
+        run: |
+          Get-ChildItem -Path . | ForEach-Object { Write-Output $_.Name }
+        shell: pwsh
